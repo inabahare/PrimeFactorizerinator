@@ -24,7 +24,7 @@ router.post('/number/', (req, res, next) => {
 	}
 
 	let factorArray = factor(userNumber); // 
-	let returnString = "SAD!";
+	let returnString = "";
 
 	// It has to be a natural number. So the number can't be 0 or less
 	if (userNumber <= 0) {
@@ -40,7 +40,7 @@ router.post('/number/', (req, res, next) => {
 
 	// Check if not prime. The users number is more than 1 
 	if (factorArray[0] != userNumber && userNumber > 1) {
-		returnString = userNumber + " = " + factorArray.join(" * ");
+		returnString = userNumber + " = " + factorArray.join(" &middot; ");
 	}
 
 	// Last, check if the number is 1

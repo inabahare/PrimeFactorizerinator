@@ -16,10 +16,8 @@ router.get('/number/', (req, res, next) => {
 });
 
 router.post('/number/', (req, res, next) => {
-
 	let userNumber = req.body.number; // The number the user wants to factor
-	
-	console.log(userNumber);
+
 
 	if (!userNumber) {
 		res.redirect("/");
@@ -28,14 +26,26 @@ router.post('/number/', (req, res, next) => {
 	let factorArray = factor(userNumber); // 
 	let returnString = "SAD!";
 
+	// It has to be a natural number. So the number can't be 0 or less
+	if (userNumber <= 0) {
+		returnString = "Tallet kan ikke være mindre end 0";
+	}
+
 	// Check if prime
 	if (factorArray[0] == userNumber) {
 		returnString = userNumber + " er et primtal";
 	}
 
-	// Check if not prime
-	if (factorArray[0] != userNumber) {
+	console.log(factorArray);
+
+	// Check if not prime. The users number is more than 1 
+	if (factorArray[0] != userNumber && userNumber > 1) {
 		returnString = userNumber + " = " + factorArray.join(" * ");
+	}
+
+	// Last, check if the number is 1
+	if (userNumber == 1) {
+		returnString = "1 er ikke en faktor af 2 primtal";
 	}
 
 	// Show the page

@@ -21,9 +21,8 @@ function primeFactor(n) {
 
 	// Now N will be an odd number
 
-	// Now run through all possible odd divisors
-	// i will be the divisor
-	for (let i = 3; i <= Math.sqrt(n); i = i + 2) {
+	// Now run through all possible odd divisors that are less than n
+	for (let i = 3; i <= n; i = i + 2) {
 
 		// Check the remainder for when n is divided by i
 		// If the remainder is 0, i will be a factor
